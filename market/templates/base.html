@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table class="main-content">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Shortcut</th>
+                <th>Price</th>
+                <th>24h %</th>
+                <th>7d %</th>
+                <th>Market Cap</th>
+                <th>Volume(24h)</th>
+                <th>Circulating Supply</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for crypto in cryptos %}
+            <tr>
+                <td>{{ crypto.id }}</td>
+                <td>{{ crypto.name }}</td>
+                <td>{{ crypto.shortcut }}</td>
+                <td>{{ crypto.price }}</td>
+                <td>{{ crypto.percent24hours }}</td>
+                <td>{{ crypto.percent7days }}</td>
+                <td>{{ crypto.market_cap }}</td>
+                <td>{{ crypto.volume24h }}</td>
+                <td>{{ crypto.circulating_supply }}</td>
+                <td>
+                    <button class="buy">Buy</button>
+                    <button class="sell">Sell</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

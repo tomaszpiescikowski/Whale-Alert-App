@@ -1,0 +1,23 @@
+"""
+URI - Uniform Resource Identifier
+app.config -> podajemy flaskowi informacje, że mamy podłączoną bazę danych
+
+from run import db
+db.create_all() -> tworzy plik
+from run import Cryptocurrency  -> importujemy wybrany moduł/obiekt
+
+crypto1 = Cryptocurrency(name='Bitcoin', shortcut='BTC', price=38048.57, percent24hours=-0.98, percent7days=-3.94, market_cap=713842418597, volume24h=26106060260, circulating_supply=18776837)
+crypto2 = Cryptocurrency(name='Ethereum', shortcut='ETH', price=2628.05, percent24hours=4.17, percent7days=14.46, market_cap=306800434495, volume24h=27043645911, circulating_supply=116979106)
+crypto3 = Cryptocurrency(name='Dogecoin', shortcut='DOGE', price=0.1966, percent24hours=-0.92, percent7days=-3.4, market_cap=25641162067, volume24h=1101618982, circulating_supply=130730434418)
+
+db.session.add(crypto1)
+db.session.add(crypto2)
+db.session.add(crypto3)
+
+db.session.commit()
+
+Cryptocurrency.query.all()  -> wszystkie obiekty przechowywane w bazie, z modelu(tabeli) Cryptocurrency
+
+Cryptocurrency.query.filter_by(price=500)
+
+"""
