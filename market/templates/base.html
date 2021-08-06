@@ -2,42 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WHALEALERT24</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+    body, body * {
+        font-family: 'Roboto Condensed', sans-serif;
+        background-color: #122121;
+    }
+
+    .main-content {
+        font-size: 20px;
+        background-color: gray;
+        font-weight: bold;
+        color: white;
+    }
+
+    th, tr {
+        padding: 0 80px 0 0;
+    }
+    .plus {
+        color: green;
+        font-weight: bold;
+    }
+    .minus {
+        color: red;
+        font-weight: bold;
+    }
+    .dollar_sign {
+        color: gold;
+        font-style: italic;
+     }
+
+    td {
+
+        padding: 10px;
+
+    }
+
+
+
+    </style>
 </head>
 <body>
-    <table class="main-content">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Shortcut</th>
-                <th>Price</th>
-                <th>24h %</th>
-                <th>7d %</th>
-                <th>Market Cap</th>
-                <th>Volume(24h)</th>
-                <th>Circulating Supply</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for crypto in cryptos %}
-            <tr>
-                <td>{{ crypto.id }}</td>
-                <td>{{ crypto.name }}</td>
-                <td>{{ crypto.shortcut }}</td>
-                <td>{{ crypto.price }}</td>
-                <td>{{ crypto.percent24hours }}</td>
-                <td>{{ crypto.percent7days }}</td>
-                <td>{{ crypto.market_cap }}</td>
-                <td>{{ crypto.volume24h }}</td>
-                <td>{{ crypto.circulating_supply }}</td>
-                <td>
-                    <button class="buy">Buy</button>
-                    <button class="sell">Sell</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="data">
+        <table class="main-content">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Shortcut</th>
+                    <th>Price</th>
+                    <th>24h %</th>
+                    <th>7d %</th>
+                    <th>Market Cap</th>
+                    <th>Volume(24h)</th>
+                    <th>Circulating Supply</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for crypto in cryptos %}
+                <tr>
+                    <td>{{ crypto.id }}</td>
+                    <td>{{ crypto.name }}</td>
+                    <td>{{ crypto.shortcut }}</td>
+                    <td><span class="dollar_sign">$</span> {{ crypto.price }}</td>
+                        {% if crypto.percent24hours >= 0 %}
+                            <td class="plus">+{{ crypto.percent24hours }}%</td>
+                        {% else %}
+                            <td class="minus">{{ crypto.percent24hours }}%</td>
+                        {% endif %}
+
+                        {% if crypto.percent7days >= 0 %}
+                            <td class="plus">+{{ crypto.percent7days }}%</td>
+                        {% else %}
+                            <td class="minus">{{ crypto.percent7days }}%</td>
+                        {% endif %}
+                    <td><span class="dollar_sign">$</span> {{ crypto.market_cap }}</td>
+                    <td><span class="dollar_sign">$</span> {{ crypto.volume24h }}</td>
+                    <td><span class="dollar_sign">$</span> {{ crypto.circulating_supply }}</td>
+                    <td>
+                        <button class="buy">Buy</button>
+                        <button class="sell">Sell</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
