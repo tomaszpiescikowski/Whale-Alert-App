@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-from market.routes import Cryptocurrency
+from market.routes import Cryptocurrency, User
 from market import db
 from sqlalchemy import update
 
@@ -75,19 +75,33 @@ def read_from_json():
     with open('data.json') as json_file:
         data = json.load(json_file)
         for p in data['cryptocurrencies']:
+            if Cryptocurrency.query.filter_by(name=str(p['name'])).first() is None:
 
-            Cryptocurrency.query.filter_by(name=str(p['name'])).update(
-                dict(
-                    name=str(p['name']),
-                    shortcut=str(p['shortcut']),
-                    price=float(p['price']),
-                    percent24hours=float(p['percent24hours']),
-                    percent7days=float(p['percent7days']),
-                    market_cap=float(p['market_cap']),
-                    volume24h=float(p['volume24h']),
-                    circulating_supply=float(p['circulating_supply'])
+                new_crypto = Cryptocurrency(name=str(p['name']),
+                                            shortcut=str(p['shortcut']),
+                                            price=float(p['price']),
+                                            percent24hours=float(p['percent24hours']),
+                                            percent7days=float(p['percent7days']),
+                                            market_cap=float(p['market_cap']),
+                                            volume24h=float(p['volume24h']),
+                                            circulating_supply=float(p['circulating_supply'])
+                                            )
+                db.session.add(new_crypto)
+
+            else:
+                Cryptocurrency.query.filter_by(name=str(p['name'])).update(
+                    dict(
+                        name=str(p['name']),
+                        shortcut=str(p['shortcut']),
+                        price=float(p['price']),
+                        percent24hours=float(p['percent24hours']),
+                        percent7days=float(p['percent7days']),
+                        market_cap=float(p['market_cap']),
+                        volume24h=float(p['volume24h']),
+                        circulating_supply=float(p['circulating_supply'])
+                    )
                 )
-            )
+
             db.session.commit()
 
 

@@ -31,3 +31,6 @@ password: eloelo520
 
 Gmail requires that you connect to port 465 if using SMTP_SSL(), and to port 587 when using .starttls().
 '''
+
+
+os.urandom(12).hex()

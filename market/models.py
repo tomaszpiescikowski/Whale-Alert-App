@@ -22,7 +22,7 @@ class Cryptocurrency(db.Model):
     market_cap = db.Column(db.Float(), nullable=True, unique=False, default=0.0)
     volume24h = db.Column(db.Float(), nullable=True, unique=False, default=0.0)
     circulating_supply = db.Column(db.Float(), nullable=True, unique=False, default=0.0)
-    owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    owned = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
     def __repr__(self):
         return f'{self.name}({self.shortcut})'

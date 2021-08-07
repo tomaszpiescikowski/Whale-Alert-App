@@ -8,6 +8,8 @@
     <h2 style="margin: 50px 0 0 120px">REGISTER PAGE</h2>
     <div class="container" style="width: 400px; margin: 20px 0 0 100px">
         <form method="post" class="form-register" style="display: flex; flex-direction: column; padding: 20px">
+            {{ form.hidden_tag() }}
+
             {{ form.username.label() }}
             {{ form.username(class="form-control", placeholder="Username") }}
         <br>
@@ -20,7 +22,6 @@
             {{ form.password2.label() }}
             {{ form.password2(class="form-control", placeholder="password2") }}
         <br>
-            {{ form.submit.label() }}
             {{ form.submit(class="form-control", placeholder="submit") }}
         </form>
     </div>
