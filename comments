@@ -21,3 +21,13 @@ Cryptocurrency.query.all()  -> wszystkie obiekty przechowywane w bazie, z modelu
 Cryptocurrency.query.filter_by(price=500)
 
 """
+
+
+'''
+name: Elon
+surname: Musk
+email: automatedpythonmessage@gmail.com
+password: eloelo520
+
+Gmail requires that you connect to port 465 if using SMTP_SSL(), and to port 587 when using .starttls().
+'''

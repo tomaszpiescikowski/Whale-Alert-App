@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WhaleAlert24</title>
+    <link rel="icon"
+      type="favicon"
+      href="/static/favicon.ico">
+</head>
+<body>
+    <h1>Send Email</h1>
+    <form action="{{ url_for('whale_page') }}" method="post" >
+        <p>EMAIL</p>
+        <input type="text" name='email' placeholder="abc@postoffice.com">
+        <p>PASSWORD</p>
+        <input type="text" name='password' placeholder="kotletschabowy">
+        <button type='submit'>Submit</button>
+    </form>
+</body>
+</html>
