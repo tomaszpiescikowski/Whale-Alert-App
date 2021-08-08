@@ -2,7 +2,7 @@ from market import app, db
 from market.models import Cryptocurrency, User
 from market.scraper import generate_json, read_from_json
 from market.mailer import send_email
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, url_for, redirect, flash, get_flashed_messages
 from market.forms import RegisterForm
 
 
@@ -12,14 +12,14 @@ def register_page():
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
                               email=form.email.data,
-                              password_hash=form.password1.data,
+                              password=form.password1.data,
                               )
         db.session.add(user_to_create)
         db.session.commit()
         return redirect(url_for('dashboard_page'))
     if form.errors is not {}: #if there are not errors from the validations
         for err_msg in form.errors.values():
-            print(f'There was an error with creating a user: {err_msg}')
+            flash(f'There was an error with creating a user: {err_msg}', category='danger')
 
 
     return render_template('register.html', form=form)

@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p style="background-color: #121212; padding: 10px; color: white; font-weight: bold;">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <h2 style="margin: 50px 0 0 120px">REGISTER PAGE</h2>
     <div class="container" style="width: 400px; margin: 20px 0 0 100px">
         <form method="post" class="form-register" style="display: flex; flex-direction: column; padding: 20px">

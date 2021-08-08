@@ -1,4 +1,4 @@
-from market import db
+from market import db, bcrypt
 
 
 class User(db.Model):
@@ -10,6 +10,19 @@ class User(db.Model):
     items = db.relationship('Cryptocurrency', backref='owned_user', lazy=True) #relacja
     # Iphone(item).backref(owned_user) -> daje nam usera
     #lazy = True bo tak
+
+
+    @property   #individual to an instance
+    def password(self):
+        return self.password
+
+    @password.setter
+    def password(self, plain_text_password):
+        self.password_hash = bcrypt.generate_password_hash(plain_text_password).decode('utf-8')
+
+
+    def __repr__(self):
+        return f'#{self.id}: {self.username}'
 
 
 class Cryptocurrency(db.Model):
