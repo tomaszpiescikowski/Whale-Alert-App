@@ -5,6 +5,7 @@ from market.routes import Cryptocurrency, User
 from market import db
 from sqlalchemy import update
 
+
 def generate_json():
     page = requests.get('https://coinmarketcap.com/')
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -70,6 +71,7 @@ def generate_json():
 
         with open('data.json', 'w') as outfile:
             json.dump(data, outfile)
+
 
 def read_from_json():
     with open('data.json') as json_file:

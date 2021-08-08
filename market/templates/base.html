@@ -66,7 +66,7 @@
                     <td>{{ crypto.id }}</td>
                     <td>{{ crypto.name }}</td>
                     <td>{{ crypto.shortcut }}</td>
-                    <td><span class="dollar_sign">$</span> {{ crypto.price }}</td>
+                    <td><span class="dollar_sign">$</span> {{ crypto.pretty_price }}</td>
                         {% if crypto.percent24hours >= 0 %}
                             <td class="plus">+{{ crypto.percent24hours }}%</td>
                         {% else %}
@@ -78,9 +78,9 @@
                         {% else %}
                             <td class="minus">{{ crypto.percent7days }}%</td>
                         {% endif %}
-                    <td><span class="dollar_sign">$</span> {{ crypto.market_cap }}</td>
-                    <td><span class="dollar_sign">$</span> {{ crypto.volume24h }}</td>
-                    <td><span class="dollar_sign">$</span> {{ crypto.circulating_supply }}</td>
+                    <td><span class="dollar_sign">$</span> {{ crypto.pretty_market_cap }}</td>
+                    <td><span class="dollar_sign">$</span> {{ crypto.pretty_volume24h }}</td>
+                    <td><span class="dollar_sign">$</span> {{ crypto.pretty_circulating_supply }}</td>
                     <td>
                         <button class="buy">Buy</button>
                         <button class="sell">Sell</button>

@@ -31,7 +31,7 @@ def dashboard_page():
     generate_json()
     read_from_json()
     cryptos = Cryptocurrency.query.all()
-    return render_template('base.html', cryptos=cryptos)
+    return render_template('base.html', cryptos=cryptos,)
 
 
 @app.route('/whale', methods=['POST', 'GET'])
