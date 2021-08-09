@@ -1,94 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>WHALEALERT24</title>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+<!doctype html>
+<html lang="en" class="h-100">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="theme-color" content="#7952b3">
+      <!-- Favicons -->
+      <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" sizes="180x180">
+      <link rel="android-chrome-icon" href="/static/favicon/android-chrome-192x192.png" sizes="192x192">
+      <link rel="android-chrome-icon" href="/static/favicon/android-chrome-512x512.png" sizes="512x512">
+      <link rel="icon" href="/static/favicon/favicon-32x32.png" sizes="32x32" type="image/png">
+      <link rel="icon" href="/static/favicon/favicon-16x16.png" sizes="16x16" type="image/png">
+      <link rel="manifest" href="/static/favicon/site.webmanifest">
+      <link rel="icon" href="/static/favicon/favicon.ico">
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+      <!-- Custom styles for this template -->
+      <link href="/static/bootstrap.css" rel="stylesheet">
+      <link href="/static/cover.css" rel="stylesheet">
+      {% block css %}
+      {% endblock %}
+      <title>
+         {% block title %}
+            Base Title
+          {% endblock %}
+      </title>
+   </head>
 
-    body, body * {
-        font-family: 'Roboto Condensed', sans-serif;
-        background-color: #122121;
-    }
+   <body class="d-flex h-100 text-center text-white bg-dark">
+      <div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
+         <header class="mb-auto">
+            <div>
+               <h3 class="float-md-start mb-0">WHALEALERT24</h3>
+               <nav class="nav nav-masthead justify-content-center float-md-end">
+                  <a class="nav-link active" aria-current="page" href="{{url_for('root_page')}}">Home</a>
+                  <a class="nav-link" href="{{url_for('login_page')}}">Log in</a>
+                  <a class="nav-link" href="{{url_for('signup_page')}}">Sign up</a>
+               </nav>
+            </div>
+         </header>
+         {% block main_content %}
+            <h1>Base template</h1>
+          {% endblock %}
+      </div>
+      {% block footer %}
+      {% endblock %}
+   </body>
 
-    .main-content {
-        font-size: 20px;
-        background-color: gray;
-        font-weight: bold;
-        color: white;
-    }
-
-    th, tr {
-        padding: 0 80px 0 0;
-    }
-    .plus {
-        color: green;
-        font-weight: bold;
-    }
-    .minus {
-        color: red;
-        font-weight: bold;
-    }
-    .dollar_sign {
-        color: gold;
-        font-style: italic;
-     }
-
-    td {
-
-        padding: 10px;
-
-    }
-
-
-
-    </style>
-</head>
-<body>
-    <div class="data">
-        <table class="main-content">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Shortcut</th>
-                    <th>Price</th>
-                    <th>24h %</th>
-                    <th>7d %</th>
-                    <th>Market Cap</th>
-                    <th>Volume(24h)</th>
-                    <th>Circulating Supply</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for crypto in cryptos %}
-                <tr>
-                    <td>{{ crypto.id }}</td>
-                    <td>{{ crypto.name }}</td>
-                    <td>{{ crypto.shortcut }}</td>
-                    <td><span class="dollar_sign">$</span> {{ crypto.pretty_price }}</td>
-                        {% if crypto.percent24hours >= 0 %}
-                            <td class="plus">+{{ crypto.percent24hours }}%</td>
-                        {% else %}
-                            <td class="minus">{{ crypto.percent24hours }}%</td>
-                        {% endif %}
-
-                        {% if crypto.percent7days >= 0 %}
-                            <td class="plus">+{{ crypto.percent7days }}%</td>
-                        {% else %}
-                            <td class="minus">{{ crypto.percent7days }}%</td>
-                        {% endif %}
-                    <td><span class="dollar_sign">$</span> {{ crypto.pretty_market_cap }}</td>
-                    <td><span class="dollar_sign">$</span> {{ crypto.pretty_volume24h }}</td>
-                    <td><span class="dollar_sign">$</span> {{ crypto.pretty_circulating_supply }}</td>
-                    <td>
-                        <button class="buy">Buy</button>
-                        <button class="sell">Sell</button>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</body>
 </html>

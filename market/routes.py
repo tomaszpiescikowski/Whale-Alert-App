@@ -6,8 +6,8 @@ from flask import render_template, request, url_for, redirect, flash, get_flashe
 from market.forms import RegisterForm
 
 
-@app.route('/register', methods=['post', 'get'])
-def register_page():
+@app.route('/signup', methods=['post', 'get'])
+def signup_page():
     form = RegisterForm()
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
@@ -22,16 +22,25 @@ def register_page():
             flash(f'There was an error with creating a user: {err_msg}', category='danger')
 
 
-    return render_template('register.html', form=form)
+    return render_template('signup.html', form=form)
 
 
 @app.route('/')
+def root_page():
+    return render_template('root.html')
+
+
+@app.route('/login')
+def login_page():
+    return render_template('login.html')
+
+
 @app.route('/dashboard')
 def dashboard_page():
     generate_json()
     read_from_json()
     cryptos = Cryptocurrency.query.all()
-    return render_template('base.html', cryptos=cryptos,)
+    return render_template('dashboard.html', cryptos=cryptos)
 
 
 @app.route('/whale', methods=['POST', 'GET'])
